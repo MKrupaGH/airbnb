@@ -1,15 +1,24 @@
-import { View, Text } from "react-native"
-import React from "react"
-import { Link } from "expo-router"
+import { View, Text } from "react-native";
+import React from "react";
+import { Link, Stack } from "expo-router";
+import ExploreHeader from "@/components/ExploreHeader";
+import Listings from "@/components/Listings";
 
 const Explore = () => {
-  return (
-    <View>
-      <Link href={"/(modals)/login"}>Login</Link>
-      <Link href={"/(modals)/booking"}>Booking</Link>
-      <Link href={"/listing/1337"}>Listing</Link>
-    </View>
-  )
-}
+  const onDataChanged = (category: string) => {
+    console.log(category);
+  };
 
-export default Explore
+  return (
+    <View style={{ flex: 1 }}>
+      <Stack.Screen
+        options={{
+          header: () => <ExploreHeader onCategoryChanged={onDataChanged} />,
+        }}
+      />
+      <Listings />
+    </View>
+  );
+};
+
+export default Explore;
