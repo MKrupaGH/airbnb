@@ -6,6 +6,7 @@ import Listings from "@/components/Listings";
 import listings from "../../assets/data/air-bnb-listings.json";
 import listingsGeo from "../../assets/data/air-bnb-listings.geo.json";
 import ListingsMap from "@/components/ListingsMap";
+import ListingsBottomSheet from "@/components/ListingsBottomSheet";
 
 const Explore = () => {
   const [category, setCategory] = useState("Tiny homes");
@@ -19,7 +20,7 @@ const Explore = () => {
   };
 
   return (
-    <View style={{ flex: 1, marginTop: 130 }}>
+    <View style={{ flex: 1, marginTop: 80 }}>
       <Stack.Screen
         options={{
           header: () => <ExploreHeader onCategoryChanged={onDataChanged} />,
@@ -27,6 +28,7 @@ const Explore = () => {
       />
       {/* <Listings listings={items} category={category} /> */}
       <ListingsMap listings={itemsGeo} />
+      <ListingsBottomSheet listings={items} category={category} />
     </View>
   );
 };

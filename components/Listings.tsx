@@ -1,6 +1,5 @@
 import {
   View,
-  FlatList,
   ListRenderItem,
   TouchableOpacity,
   StyleSheet,
@@ -17,19 +16,32 @@ import Animated, {
   FadeInLeft,
   FadeInRight,
 } from "react-native-reanimated";
+import { FlatList } from "react-native-gesture-handler";
+import {
+  BottomSheetFlatList,
+  BottomSheetFlatListMethods,
+} from "@gorhom/bottom-sheet";
 
 interface Props {
   listings: any[];
   category: string;
+  refresh: number;
 }
 
-const Listings = ({ listings: items, category }: Props) => {
+const Listings = ({ listings: items, category, refresh }: Props) => {
   const [loading, setLoading] = useState(false);
-  const listRef = useRef<FlatList>(null);
+  const listRef = useRef<BottomSheetFlatListMethods>(null);
+
+  useEffect(() => {
+    if (refresh) {
+      listRef.current?.scrollToOffset({ offset: 0, animated: true });
+    }
+    console.log("Listings - refresh");
+  }, [refresh]);
 
   useEffect(() => {
     setLoading(true);
-
+    console.log("Listings - loading");
     setTimeout(() => {
       setLoading(false);
     }, 200);
@@ -78,10 +90,15 @@ const Listings = ({ listings: items, category }: Props) => {
 
   return (
     <View style={defaultStyles.container}>
-      <FlatList
+      <BottomSheetFlatList
         ref={listRef}
         data={loading ? [] : items}
         renderItem={cardLayout}
+        ListHeaderComponent={
+          <Text style={{ fontFamily: "mon-sb", textAlign: "center" }}>
+            {items.length} homes
+          </Text>
+        }
       />
     </View>
   );
