@@ -1,9 +1,9 @@
-import { Tabs } from "expo-router"
-import { Ionicons } from "@expo/vector-icons"
-import { FontAwesome5 } from "@expo/vector-icons"
-import { MaterialCommunityIcons } from "@expo/vector-icons"
-import Colors from "@/constants/Colors"
-import { StatusBar } from "expo-status-bar"
+import { Tabs } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import Colors from "@/constants/Colors";
+import { StatusBar } from "expo-status-bar";
 
 const Layout = () => {
   return (
@@ -37,6 +37,7 @@ const Layout = () => {
         name="trips"
         options={{
           tabBarLabel: "Trips",
+          headerTitle: "Trips",
           tabBarIcon: ({ size, color }) => (
             <FontAwesome5 name="airbnb" size={size} color={color} />
           ),
@@ -66,7 +67,7 @@ const Layout = () => {
         }}
       />
     </Tabs>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
